@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="
+             http://maven.apache.org/POM/4.0.0
+             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <!-- 1. Phiên bản mô hình POM -->
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- 2. GroupId, ArtifactId, Version (phải khớp với package/name) -->
+    <groupId>iuh.fit</groupId>
+    <artifactId>flappybirdclone</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <!-- 3. Thuộc tính chung -->
+    <properties>
+        <java.version>17</java.version>
+        <javafx.version>17.0.2</javafx.version>
+        <!-- classifier sẽ là “win” / “linux” / “mac” tùy OS -->
+        <javafx.platform>win</javafx.platform>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <!-- 4. Dependencies: chỉ JavaFX -->
+    <dependencies>
+        <!-- javafx-controls (kéo vào javafx.graphics, javafx.base, v.v.) -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>${javafx.version}</version>
+            <classifier>${javafx.platform}</classifier>
+        </dependency>
+
+        <!-- javafx-media (nếu bạn dùng AudioClip, MediaPlayer) -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-media</artifactId>
+            <version>${javafx.version}</version>
+            <classifier>${javafx.platform}</classifier>
+        </dependency>
+
+        <!-- Nếu sử dụng FXML (FXMLLoader + .fxml), bỏ comment phần này:
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>${javafx.version}</version>
+            <classifier>${javafx.platform}</classifier>
+        </dependency>
+        -->
+    </dependencies>
+
+    <!-- 5. Build Plugins -->
+    <build>
+        <plugins>
+            <!-- 5.1. Maven Compiler: compile với Java 17 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>17</source>
+                    <target>17</target>
+                </configuration>
+            </plugin>
+
+            <!-- 5.2. JavaFX Maven Plugin: để mvn javafx:run -->
+            <plugin>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>0.0.8</version>
+                <configuration>
+                    <!-- Phải trùng với package+class chứa main() -->
+                    <mainClass>iuh.fit.flappybirdclone.Main</mainClass>
+                    <!-- Bản 0.0.8 tự động đọc module-info.java, không cần khai báo <module> -->
+                </configuration>
+            </plugin>
+
+            <!-- 5.3. (Tùy chọn) Maven Shade Plugin để đóng gói uber-jar
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.4</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals><goal>shade</goal></goals>
+                        <configuration>
+                            <transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>iuh.fit.flappybirdclone.Main</mainClass>
+                                </transformer>
+                            </transformers>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            -->
+        </plugins>
+    </build>
+</project>

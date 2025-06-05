@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Main-Class: iuh.fit.flappybirdclone.Main
+Created-By: 17.0.15 (Eclipse Adoptium)
+
