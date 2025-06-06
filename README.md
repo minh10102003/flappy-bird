@@ -20,7 +20,7 @@ FlappyBird là một trò chơi đơn giản được phát triển bằng **Jav
 
 - Ngôn ngữ: `Java`
 - Thư viện giao diện: `JavaFX`
-- Lưu trữ điểm số: file cục bộ hoặc cơ chế đơn giản tích hợp trong game
+- Lưu trữ điểm số: file cục bộ tích hợp trong game
 
 ## Cài đặt và chạy game
 
